@@ -3,10 +3,11 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Header from './components/Header'
-import Guitar from './components/guitar'
+import Guitar from './components/Guitar'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [auth, setAuth] = useState(false)
+  console.log(auth)
 
   return (
     <>
