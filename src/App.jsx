@@ -4,19 +4,17 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Header from './components/Header'
 import Guitar from './components/Guitar'
+import { db } from './data/db'
 
 function App() {
-  const[auth, setAuth] = useState(false)
+  // From local file
+  const[data, setData] = useState(db)
 
-
+  // From API
   useEffect( () => {
-    console.log("Componente Listo o escuchando por Auth")
-  }, [auth])
+    setData(db)
+  }, [])
 
-  setTimeout( () => {
-    setAuth(true)
-  }, 3000)
-  
   return (
     <>
       <Header/>
