@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -6,9 +6,17 @@ import Header from './components/Header'
 import Guitar from './components/Guitar'
 
 function App() {
-  const [auth, setAuth] = useState(false)
-  console.log(auth)
+  const[auth, setAuth] = useState(false)
 
+
+  useEffect( () => {
+    console.log("Componente Listo o escuchando por Auth")
+  }, [auth])
+
+  setTimeout( () => {
+    setAuth(true)
+  }, 3000)
+  
   return (
     <>
       <Header/>
