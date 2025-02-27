@@ -1,8 +1,13 @@
 
 function Guitar({guitar}) {
 
-    console.log(guitar)
     const {id, name, image, description, price} = guitar
+
+    //OnClick Event
+    const handleClick = (guitar) => {
+        console.log('You did click mf!', guitar)
+    }
+
 
     return (
         <div className="col-md-6 col-lg-4 my-4 row align-items-center">
@@ -16,10 +21,11 @@ function Guitar({guitar}) {
                 <button
                     type="button"
                     className="btn btn-dark w-100"
+                    onClick={ () => handleClick(guitar)}
                 >Agregar al Carrito</button>
             </div>
         </div>
     )
 }
-
+ 
 export default Guitar;
