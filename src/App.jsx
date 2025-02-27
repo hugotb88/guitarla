@@ -11,6 +11,11 @@ function App() {
   // State for shopping Cart
   const [cart, setCart] = useState([])
 
+  // Adding guitars to cart
+  function addToCart(item){
+    setCart((prevCart) => [...prevCart, item])
+  }
+
   return (
     <>
       <Header />
@@ -23,6 +28,7 @@ function App() {
               guitar={guitar}
               cart={cart}
               setCart={setCart}
+              addToCart={addToCart}
             />
           ))}
         </div>
