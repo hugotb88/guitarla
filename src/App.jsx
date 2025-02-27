@@ -1,6 +1,4 @@
 import { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import Header from './components/Header'
 import Guitar from './components/Guitar'
@@ -9,6 +7,9 @@ import { db } from './data/db'
 function App() {
   // From local file
   const [data, setData] = useState(db)
+  
+  // State for shopping Cart
+  const [cart, setCart] = useState([])
 
   return (
     <>
@@ -20,6 +21,8 @@ function App() {
             <Guitar 
               key = {guitar.id}
               guitar={guitar}
+              cart={cart}
+              setCart={setCart}
             />
           ))}
         </div>
