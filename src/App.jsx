@@ -13,6 +13,10 @@ function App() {
 
   // Adding guitars to cart
   function addToCart(item){
+    //Review if the added item alread exists in the cart
+    const itemExists = cart.findIndex((guitar) => guitar.id === item.id )
+    console.log('itemExists: ' + itemExists)
+
     setCart((prevCart) => [...prevCart, item])
   }
 
