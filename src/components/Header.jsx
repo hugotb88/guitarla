@@ -1,5 +1,8 @@
 function Header({ cart }) {
 
+  // Derivated state to review if the cart is empty
+  const isEmpty = () => {cart.length === 0 }
+
   return (
     <header className="py-5 header">
       <div className="container-xl">
@@ -16,7 +19,7 @@ function Header({ cart }) {
               <img className="img-fluid" src="./public/img/carrito.png" alt="imagen carrito" />
 
               <div id="carrito" className="bg-white p-3">
-                {cart.length === 0 ? (
+                {isEmpty === 0 ? (
                   <p className="text-center">El carrito esta vacio</p>
                 ) : (
 
