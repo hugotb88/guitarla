@@ -3,6 +3,9 @@ function Header({ cart }) {
   // Derivated state to review if the cart is empty
   const isEmpty = () => cart.length === 0
 
+  // Use Reduce to calculate Total
+  const cartTotal = () => cart.reduce( (total, item) => total + (item.quantity * item.price), 0 ) 
+
   return (
     <header className="py-5 header">
       <div className="container-xl">
@@ -72,7 +75,7 @@ function Header({ cart }) {
                       </tbody>
                     </table>
 
-                    <p className="text-end">Total pagar: <span className="fw-bold">$899</span></p>
+                    <p className="text-end">Total pagar: <span className="fw-bold">${cartTotal()}</span></p>
                   </>
                 )}
                 <button className="btn btn-dark w-100 mt-3 p-2">Vaciar Carrito</button>
