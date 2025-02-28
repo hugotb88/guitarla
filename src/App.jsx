@@ -15,9 +15,14 @@ function App() {
   function addToCart(item){
     //Review if the added item alread exists in the cart
     const itemExists = cart.findIndex((guitar) => guitar.id === item.id )
-    console.log('itemExists: ' + itemExists)
+    if(itemExists >= 0){
+      console.log('Item already exist')
+    } else {
+      console.log('Item doesnt exist... adding it')
+      item.quantity = 1 // property added on the flight
+      setCart(() => [...cart, item])
+    }
 
-    setCart((prevCart) => [...prevCart, item])
   }
 
   return (
