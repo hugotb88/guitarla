@@ -14,7 +14,7 @@ function App() {
   // Adding guitars to cart
   function addToCart(item){
     //Review if the added item alread exists in the cart
-    const itemExists = cart.findIndex((guitar) => guitar.id === item.id )
+    const itemExists = cart.findIndex(guitar => guitar.id === item.id )
     if(itemExists >= 0){
       console.log('Item already exist')
       const updateCart = [...cart] //Create a copy of the state to not modify it directly (that is a bad practice)
@@ -28,10 +28,17 @@ function App() {
 
   }
 
+  // Remove from cart\
+  function removeFromCart(id) {
+    console.log("Removing item...")
+    setCart( prevCart => prevCart.filter( guitar => guitar.id !== id) )
+  }
+
   return (
     <>
       <Header 
         cart = {cart}
+        removeFromCart = {removeFromCart}
       />
 
       <main className="container-xl mt-5">

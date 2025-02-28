@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 
-function Header({ cart }) {
+function Header({ cart, removeFromCart }) {
 
   // Derivated state to review if the cart is empty
   const isEmpty = useMemo( () => cart.length === 0, [cart] )
@@ -68,6 +68,7 @@ function Header({ cart }) {
                               <button
                                 className="btn btn-danger"
                                 type="button"
+                                onClick={() => removeFromCart(guitar.id)}
                               >
                                 X
                               </button>
