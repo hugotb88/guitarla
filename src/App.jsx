@@ -5,6 +5,10 @@ import Guitar from './components/Guitar'
 import { db } from './data/db'
 
 function App() {
+  // Limits of items
+  const MAX_ITEMS = 5
+  const MIN_ITEMS = 1
+
   // From local file
   const [data, setData] = useState(db)
   
@@ -17,9 +21,11 @@ function App() {
     const itemExists = cart.findIndex(guitar => guitar.id === item.id )
     if(itemExists >= 0){
       console.log('Item already exist')
-      const updateCart = [...cart] //Create a copy of the state to not modify it directly (that is a bad practice)
-      updateCart[itemExists].quantity++ //Incremets by one the quantity of items
-      setCart(updateCart) // Using the Hook to update the cart, using immutable function (not modifying th eoriginal state)
+      if(cart[itemExists].quantity >= MAX_ITEMS) return
+      
+      const updatedCart = [...cart] //Create a copy of the state to not modify it directly (that is a bad practice)
+      updatedCart[itemExists].quantity++ //Incremets by one the quantity of items
+      setCart(updatedCart) // Using the Hook to update the cart, using immutable function (not modifying th eoriginal state)
     } else {
       console.log('Item doesnt exist... adding it')
       item.quantity = 1 // property added on the flight
@@ -28,10 +34,40 @@ function App() {
 
   }
 
-  // Remove from cart\
+  // Remove from cart
   function removeFromCart(id) {
     console.log("Removing item...")
     setCart( prevCart => prevCart.filter( guitar => guitar.id !== id) )
+  }
+
+  // Increment Quantity
+  function increaseQuantity(id) {
+    console.log("Incrementing...")
+    const updatedCart = cart.map( item => {
+      if (item.id === id && item.quantity < MAX_ITEMS){
+        return {
+          ...item, // To not loose the reference to the  rest of the item
+          quantity: item.quantity + 1
+        }
+      }
+      return item
+    })
+    setCart(updatedCart)
+  }
+
+  // Decrement Quantity
+  function decreaseQuantity(id) {
+    console.log("Decrementing...")
+    const updatedCart = cart.map( item => {
+      if (item.id === id && item.quantity > MIN_ITEMS){
+        return {
+          ...item, // To not loose the reference to the  rest of the item
+          quantity: item.quantity - 1
+        }
+      }
+      return item
+    })
+    setCart(updatedCart)
   }
 
   return (
@@ -39,6 +75,8 @@ function App() {
       <Header 
         cart = {cart}
         removeFromCart = {removeFromCart}
+        increaseQuantity = {increaseQuantity}
+        decreaseQuantity = {decreaseQuantity}
       />
 
       <main className="container-xl mt-5">
