@@ -1,12 +1,12 @@
 import { useMemo } from "react";
 
-function Header({ cart, removeFromCart, increaseQuantity, decreaseQuantity }) {
+function Header({ cart, removeFromCart, increaseQuantity, decreaseQuantity, clearCart }) {
 
   // Derivated state to review if the cart is empty
-  const isEmpty = useMemo( () => cart.length === 0, [cart] )
+  const isEmpty = useMemo(() => cart.length === 0, [cart])
 
   // Use Reduce to calculate Total
-  const cartTotal = useMemo( () => cart.reduce( (total, item) => total + (item.quantity * item.price), 0 ), [cart])  
+  const cartTotal = useMemo(() => cart.reduce((total, item) => total + (item.quantity * item.price), 0), [cart])
 
   return (
     <header className="py-5 header">
@@ -83,7 +83,11 @@ function Header({ cart, removeFromCart, increaseQuantity, decreaseQuantity }) {
                     <p className="text-end">Total pagar: <span className="fw-bold">${cartTotal}</span></p>
                   </>
                 )}
-                <button className="btn btn-dark w-100 mt-3 p-2">Vaciar Carrito</button>
+                <button
+                  className="btn btn-dark w-100 mt-3 p-2"
+                  onClick={clearCart}
+                  >Vaciar Carrito
+                </button>
 
               </div>
             </div>
