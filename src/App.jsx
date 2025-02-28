@@ -17,6 +17,9 @@ function App() {
     const itemExists = cart.findIndex((guitar) => guitar.id === item.id )
     if(itemExists >= 0){
       console.log('Item already exist')
+      const updateCart = [...cart] //Create a copy of the state to not modify it directly (that is a bad practice)
+      updateCart[itemExists].quantity++ //Incremets by one the quantity of items
+      setCart(updateCart) // Using the Hook to update the cart, using immutable function (not modifying th eoriginal state)
     } else {
       console.log('Item doesnt exist... adding it')
       item.quantity = 1 // property added on the flight
